@@ -2,6 +2,7 @@
 
 namespace CustomFetchers;
 
+use DataProvider\DataProviderException;
 use DataProvider\DataProviderInterface;
 
 class CoindescFetcher
@@ -17,9 +18,13 @@ class CoindescFetcher
     {
         $this->provider->setParameters('https://api.coindesk.com/v1/bpi/currentprice.json');
 
-        return $this->convert(
-            $this->provider->getResponse(['foo' => 'bar'])
-        );
+        try {
+            return $this->convert(
+                $this->provider->getResponse(['foo' => 'bar'])
+            );
+        } catch (DataProviderException $e) {
+            return 'Error: '.$e->getMessage();
+        }
     }
 
     private function convert($string)

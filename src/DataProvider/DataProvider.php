@@ -22,6 +22,21 @@ class DataProvider implements DataProviderInterface, LoggerAwareInterface
         $this->logger = new NullLogger();
     }
 
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getUser(): ?string
+    {
+        return $this->user;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
     /**
      * @param mixed $logger
      */
