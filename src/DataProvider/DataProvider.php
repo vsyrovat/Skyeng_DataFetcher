@@ -50,6 +50,8 @@ class DataProvider implements DataProviderInterface, LoggerAwareInterface
     {
         $this->validateParameters();
 
+        $this->logger->debug('DataProvider requested params: '.var_export($input, true));
+
         try {
             $options = ['query' => $input];
 
@@ -58,6 +60,8 @@ class DataProvider implements DataProviderInterface, LoggerAwareInterface
             }
 
             $clientResponse = $this->client->get($this->url, $options);
+
+            $this->logger->debug('DataProvider received: '.$clientResponse->getBody()->__toString());
 
             return $clientResponse->getBody()->__toString();
         } catch (GuzzleException $e) {
