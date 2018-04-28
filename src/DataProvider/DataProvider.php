@@ -59,6 +59,8 @@ class DataProvider implements DataProviderInterface, LoggerAwareInterface
                 $options['auth'] = [$this->user, $this->password];
             }
 
+            sleep(1); // Delay for demo
+
             $clientResponse = $this->client->get($this->url, $options);
 
             $this->logger->debug('DataProvider received: '.$clientResponse->getBody()->__toString());
