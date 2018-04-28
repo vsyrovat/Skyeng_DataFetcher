@@ -1,7 +1,13 @@
 {
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "psr/log": "^1.0",
-        "psr/cache": "^1.0"
+        "psr/cache": "^1.0",
+        "monolog/monolog": "^1.23"
     }
 }
