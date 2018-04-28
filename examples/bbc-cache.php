@@ -14,9 +14,12 @@ $cachePool = new FilesystemCachePool($filesystem);
 
 $wrapper = new CachingDataProvider($provider, $cachePool);
 $wrapper->setLogger($logger);
+$wrapper->setCacheTtl(5);
 
 $fetcher = new BBCFetcher($wrapper);
 
 $data = $fetcher->fetchNews();
 
 print_r($data);
+
+echo "CACHE TTL = 5 sec\n";

@@ -14,9 +14,12 @@ $cachePool = new FilesystemCachePool($filesystem);
 
 $wrapper = new CachingDataProvider($provider, $cachePool);
 $wrapper->setLogger($logger);
+$wrapper->setCacheTtl(10);
 
 $fetcher = new CoindescFetcher($wrapper);
 
 $data = $fetcher->fetchRates();
 
 print_r($data);
+
+echo "CACHE TTL = 10 sec\n";

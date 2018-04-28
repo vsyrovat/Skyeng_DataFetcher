@@ -50,7 +50,9 @@ class CachingDataProvider implements DataProviderInterface, LoggerAwareInterface
             if (!$cacheItem->isHit()) {
                 $this->logger->debug('CachingDataProvider: key NOT FOUND in the cache pool');
                 $value = $this->provider->getResponse($input);
-                $cacheItem->set($value);
+                $cacheItem
+                    ->set($value)
+                    ->expiresAfter($this->cacheTtl);
                 $this->cachePool->save($cacheItem);
             } else {
                 $this->logger->debug('CachingDataProvider: key FOUND in the cache pool');
