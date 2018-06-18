@@ -76,7 +76,7 @@ class CachingDataProvider implements DataProviderInterface, LoggerAwareInterface
         sort($keys);
         $sortedInput = [];
         foreach ($keys as $key) {
-            $sortedInput = $input[$key];
+            $sortedInput[] = $input[$key];
         }
 
         return md5(\serialize([
